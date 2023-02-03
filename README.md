@@ -14,9 +14,6 @@ Project implemented as part of Rajasthan Hackathron
 
 ### Installing and Running Project
 
-Clone Project
-```
-git clone git@github.com:sanattaori/techdot.git && cd techdot
 ```
 Install Dependencies
 ```
@@ -65,41 +62,24 @@ Lastly, compile the contract by loading the code from Voting.sol in to a string 
 > code = fs.readFileSync('Voting.sol').toString()
 > solc = require('solc')
 > compiledCode = solc.compile(code)
-```
-testrpc creates 10 test accounts to play with automatically. These accounts come preloaded with 100 (fake) ethers.
 
-Deploy the contract!
-
-dCode.contracts[‘:Voting’].bytecode: bytecode which will be deployed to the blockchain.
-compiledCode.contracts[‘:Voting’].interface: interface of the contract (called abi) which tells the contract user what methods are available in the contract.
-```
 > abiDefinition = JSON.parse(compiledCode.contracts[':Voting'].interface)
 > VotingContract = web3.eth.contract(abiDefinition)
 > byteCode = compiledCode.contracts[':Voting'].bytecode
->deployedContract = VotingContract.new(['Sanat','Aniket','Mandar','Akshay'],{data: byteCode, from: web3.eth.accounts[0], gas: 4700000})
+> deployedContract = VotingContract.new(['Varun','Ribhav','Sharad','Rahul'],{
+			data: byteCode, 
+			from: web3.eth.accounts[0], 
+			gas: 4700000
+		})
+
 > deployedContract.address
 > contractInstance = VotingContract.at(deployedContract.address)
-deployedContract.address. When you have to interact with your contract, you need this deployed address and abi definition we talked about earlier.
 ```
 Step 4 - Interacting with the Contract via the Nodejs Console
 ```
-> contractInstance.totalVotesFor.call('Sanat').toLocaleString()
+> contractInstance.totalVotesFor.call('Varun').toLocaleString()
 '2'
 ```
-
-### For TypeError: Cannot read property ':Voting' of undefined :
-Make sure you have ganache-cli
-```
-sudo npm install ganache-cli -g
-```
-copy address of first account
-```
-$ ganache-cli
-```
-Paste this adderess to 
-ui/js/clist.js line 17
-https://github.com/sanattaori/techdot/blob/cecabc1917965ed7404e4c444b7572c97e10dcf9/ui/js/clist.js#L17
-
 
 ### Purpose of test
 
@@ -122,11 +102,6 @@ user interface and high security.
 
 ## Authors
 
-* **Sanat Taori**
-* **Akshay Motghare**
-* **Mandar Patil** 
-* **Aniket Narkhede**
+* **Rahul Vyas**
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
